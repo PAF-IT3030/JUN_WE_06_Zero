@@ -48,13 +48,13 @@ function NewsFeed() {
             </Col>
           </Row>
         </Col>
-        {/* <Col md={8}>
+        <Col md={8}>
           <div className="d-flex justify-content-center align-items-center w-100 h-100">
             <Button variant="success" onClick={handleClick}>
               Find All User Accounts
             </Button>
           </div>
-        </Col> */}
+        </Col>
       </Row>
       <Row>
         <Col md={4}>
