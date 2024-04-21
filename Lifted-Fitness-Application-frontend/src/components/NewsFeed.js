@@ -76,10 +76,10 @@ function NewsFeed() {
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
-                      <Link to="" className="text-decoration-none">
+                      <Link to="mealplan" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-success shadow">
                           <span>
-                            {" "}
+                            
                             <RiPassportLine /> Meal Plan
                           </span>
                         </li>
@@ -98,7 +98,7 @@ function NewsFeed() {
                       <Link to="follower" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-success shadow">
                           <span>
-                            <RiBaseStationLine /> Followers
+                            <RiBaseStationLine />Followers
                           </span>
                         </li>
                       </Link>
