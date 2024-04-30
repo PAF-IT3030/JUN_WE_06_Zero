@@ -13,7 +13,7 @@ import Profile from "./Profile";
 import MyProfile from "./MyProfile";
 import AllAccounts from "./AllAccounts";
 import UnauthorizedPage from "./UnauthorizedPage";
-import  Mealplan from "./MealPlan";
+import  Mealplan from "./MealPostCompose";
 
 function AppContainer() {
   return (

@@ -169,7 +169,11 @@ public class MealPlanPostService {
             // update post list of user who shared the post
             targetPost.setUserId(doubleId.getId2());
             targetPost.setId(null);
-            targetPost.setContent("Shared a post: " + targetPost.getContent());
+            targetPost.setDietaryType(targetPost.getDietaryType());
+            targetPost.setRecipesName(targetPost.getRecipesName());
+            targetPost.setNutritionalContent(targetPost.getNutritionalContent());
+            targetPost.setIngredientContent(targetPost.getIngredientContent());
+            targetPost.setCookContent(targetPost.getCookContent());
             targetPost.setLove(new ArrayList<>());
             targetPost.setShare(new ArrayList<>());
             targetPost.setComment(new ArrayList<>());

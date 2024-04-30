@@ -21,7 +21,13 @@ public class MealPlanPostEntity {
 
     private String originalUserId;
 
-    private String content;
+    private String recipesName;
+
+    private String dietaryType;
+    private String nutritionalContent;
+    private String ingredientContent;
+
+    private  String cookContent;
 
     private String image;
 
