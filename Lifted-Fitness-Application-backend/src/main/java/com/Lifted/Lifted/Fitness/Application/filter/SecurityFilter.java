@@ -29,6 +29,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // read token from authorization header
         String token = request.getHeader("Authorization");
+        System.out.println("Token: " + token);
         if (token != null) {
             String userEmail = util.getSubject(token);
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -9,10 +9,7 @@ import com.Lifted.Lifted.Fitness.Application.service.ResponseObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -20,7 +17,7 @@ public class MealPlanPostController {
     @Autowired
     private MealPlanPostService postService;
 
-    @PostMapping("/insertpost")
+    @PostMapping("/insertMealPost")
     public ResponseEntity<ResponseObjectService> insertPost(@RequestBody MealPlanPostEntity inputPost) {
         return new ResponseEntity<ResponseObjectService>(postService.insertPost(inputPost), HttpStatus.OK);
     }
@@ -49,5 +46,10 @@ public class MealPlanPostController {
     @PostMapping("/sharepost")
     public ResponseEntity<ResponseObjectService> sharePost(@RequestBody DoubleIdObjectEntity doubleId) {
         return new ResponseEntity<ResponseObjectService>(postService.updatePostByShare(doubleId), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllMealPosts")
+public ResponseEntity<ResponseObjectService> getAllPosts() {
+        return new ResponseEntity<ResponseObjectService>(postService.getAllPosts(), HttpStatus.OK);
     }
 }

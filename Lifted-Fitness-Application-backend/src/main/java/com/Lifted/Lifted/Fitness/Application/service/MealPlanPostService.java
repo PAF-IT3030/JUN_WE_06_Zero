@@ -185,5 +185,14 @@ public class MealPlanPostService {
             return responseObj;
         }
     }
+
+    public ResponseObjectService getAllPosts() {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        List<MealPlanPostEntity> allPosts = postRepo.findAll();
+        responseObj.setStatus("success");
+        responseObj.setMessage("success");
+        responseObj.setPayload(allPosts);
+        return responseObj;
+    }
 }
 

@@ -124,7 +124,7 @@ function PostCompose() {
     try {
       const response = await axios({
         method: "post",
-        url: "/api/v1/insertpost",
+        url: "/api/v1/insertMealPost",
         headers: {
           Authorization: localStorage.getItem("psnToken"),
         },

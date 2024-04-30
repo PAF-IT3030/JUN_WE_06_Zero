@@ -44,6 +44,10 @@ public class JWTUtil {
     }
 
     public String getSubject(String token) {
+        System.out.println("Token: =================" + token);
+        String DATA = getClaims(token).getSubject();
+        System.out.println(DATA +"FFFFFEFEF");
+
         return getClaims(token).getSubject();
     }
 }
