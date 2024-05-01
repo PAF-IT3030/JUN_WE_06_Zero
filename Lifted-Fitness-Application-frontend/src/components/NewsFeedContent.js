@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import PostCompose from "./PostCompose";
-import PostItem from "./PostItem";
+import PostItem from "./MealPostItem";
 import { Spinner } from "react-bootstrap";
 import {getFollowingPosts} from "../feature/followingPost/followingPostSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function NewsFeedContent() {
+  console.log("hello");
   const dispatch = useDispatch();
   const storeFollowingPosts = useSelector((state) => state.followingPostReducer.followingPosts);
 
@@ -35,7 +36,7 @@ function NewsFeedContent() {
   return (
     <div>
       {/* <h1>NewsFeedContent page</h1> */}
-      <PostCompose />
+      {/* <PostCompose /> */}
       {storeFollowingPosts !== null ? (
         storeFollowingPosts.map((post) => {
           return (
@@ -45,7 +46,11 @@ function NewsFeedContent() {
               userId={post.user.id}
               firstName={post.user.firstName}
               lastName={post.user.lastName}
-              content={post.post.content}
+              dietaryType={post.post.dietaryType}
+              recipesName={post.post.recipesName}
+              nutritionalContent={post.post.nutritionalContent}
+              ingredientContent={post.post.ingredientContent}
+              cookContent={post.post.cookContent}
               image={post.post.image}
               loveList={post.post.love}
               shareList={post.post.share}

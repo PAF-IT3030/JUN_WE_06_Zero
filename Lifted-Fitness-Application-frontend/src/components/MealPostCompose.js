@@ -27,8 +27,8 @@ function PostCompose() {
 
   const [recipesName, setRecipesName] = useState("");
 
-  const [dietaryContent, setDietaryContent] = useState("");
-  const [dietaryContentCount, setDietaryContentCount] = useState(0);
+  const [dietaryType, setdietaryType] = useState("");
+  const [dietaryTypeCount, setdietaryTypeCount] = useState(0);
 
   const [nutritionalContent, setnutritionalContent] = useState("");
   const [nutritionalContentCount, setnutritionalContentCount] = useState(0);
@@ -71,7 +71,7 @@ function PostCompose() {
   }
   //Dietry cotent change
   function handleDietryContentChange(e) {
-    setDietaryContent(e.target.value);
+    setdietaryType(e.target.value);
   }
 
   //Recipes content change
@@ -146,7 +146,7 @@ function PostCompose() {
 
       if (response.data !== null && response.data.status === "success") {
         showSuccessMessage("Posted successfully!");
-        //setDietaryContent("");
+        //setdietaryType("");
         //setRecipesName("");
         //setnutritionalContent("");
         //setIngredientContent("");
@@ -215,7 +215,7 @@ function PostCompose() {
 
   async function handleCreatePost(e) {
     e.preventDefault();
-    createPost(dietaryContent,recipesName,nutritionalContent, ingredientContent, cookContent);
+    createPost(dietaryType,recipesName,nutritionalContent, ingredientContent, cookContent);
     dispatch(getFollowingPosts());
   }
 
@@ -243,7 +243,7 @@ function PostCompose() {
               <Form.Select
                 aria-label="Default select example"
                 required
-                Value={dietaryContent}
+                Value={dietaryType}
                 onChange={handleDietryContentChange}
               >
                 <option>Select One</option>

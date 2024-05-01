@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfilePosts } from "../feature/checkProfile/checkProfileSlice";
 import { getProfileInfo } from "../feature/checkProfile/checkProfileSlice";
-import PostItem from "./PostItem";
+import MealPostItem from "./MealPostItem";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -25,13 +25,17 @@ function Profile() {
       {postList !== null ? (
         postList.map((postItem) => {
           return (
-            <PostItem
+            <MealPostItem
               key={postItem.id}
               postId={postItem.id}
               userId={postItem.userId}
               firstName={userInfo.firstName}
               lastName={userInfo.lastName}
-              content={postItem.content}
+              dietaryType={postItem.dietaryType}
+              recipesName={postItem.recipesName}
+              nutritionalContent={postItem.nutritionalContent}
+              ingredientContent={postItem.ingredientContent}
+              cookContent={postItem.cookContent}
               image={postItem.image}
               loveList={postItem.love}
               shareList={postItem.share}
