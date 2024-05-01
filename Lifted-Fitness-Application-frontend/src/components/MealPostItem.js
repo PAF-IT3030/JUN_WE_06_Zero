@@ -85,12 +85,15 @@ function PostItem(props) {
     setCommentContent("");
   }
 
+  //console.log(props.dietaryType);
+  //console.log(props.recipesName);
+
   return (
     <div className="border shadow rounded-3 border-primary p-3 mt-3">
       <Row>
         <div className="d-flex align-items-center mb-3">
           <div className="mx-3">
-            <Hashicon value={props.userId} size={50} />
+            <Hashicon value={props.userId} size={30} />
           </div>
           <div className="d-flex flex-column">
           <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
@@ -98,8 +101,22 @@ function PostItem(props) {
           </div>
         </div>
         <div className="mx-3">
+          <div className="fw-bold fs-5 text-center">
+            <p>{props.recipesName}</p>
+            <p className="fw-bold fs-6">{props.dietaryType}</p>
+            
+          </div>
           <div>
-            <p>{props.content}</p>
+            <p className="fw-bold">Nutritional Content</p>
+            <p>{props.nutritionalContent}</p>
+          </div>
+          <div>
+            <p className="fw-bold">Ingredients</p>
+            <p>{props.ingredientContent}</p>
+          </div>
+          <div>
+            <p className="fw-bold">Cooking Instructions</p>
+            <p>{props.cookContent}</p>
           </div>
           {props.image !== null ? (
             <div className="d-flex justify-content-center align-items-center mb-3">
