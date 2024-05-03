@@ -1,0 +1,17 @@
+  spring:
+    data:
+      mongodb:
+        uri: mongodb+srv://LiftedDBUser:LiftedDBUser123@cluster0.0gkklot.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+        database: LiftedSocialApp
+    application:
+        name: Lifted-Fitness-Application
+    security:
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: 15931352532-74ljb5guhdhn83p7e88mficcqo7hut8c.apps.googleusercontent.com
+              client-secret: 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
+              scope:
+                - email
+                - profile

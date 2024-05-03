@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 
+import Login from "./auth/auth2";
+
 import { RiLoginBoxLine } from "react-icons/ri";
 
 import styles from "./styles/SignIn.module.css";
@@ -144,6 +146,14 @@ function SignIn() {
             <Button type="submit" variant="success">
               Sign In <RiLoginBoxLine />
             </Button>
+            <Login />
+            <Row className="mt-3">
+              <Col className="text-center">
+                <Link to="/signup" className="text-decoration-none">
+                  Don't have an account? Sign Up
+                </Link>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>

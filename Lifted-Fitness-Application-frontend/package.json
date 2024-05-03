@@ -5,6 +5,7 @@
   "dependencies": {
     "@emeraldpay/hashicon-react": "^0.5.1",
     "@react-aria/interactions": "^3.21.1",
+    "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@stablelib/blake2s": "^1.0.1",
     "@testing-library/jest-dom": "^5.16.1",
@@ -60,5 +61,4 @@
     "eslint": "^9.1.1",
     "eslint-plugin-jest": "^28.3.0"
   }
-  
 }

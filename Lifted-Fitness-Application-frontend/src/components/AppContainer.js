@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter, Routes, Route} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
@@ -13,7 +13,7 @@ import Profile from "./Profile";
 import MyProfile from "./MyProfile";
 import AllAccounts from "./AllAccounts";
 import UnauthorizedPage from "./UnauthorizedPage";
-import  Mealplan from "./MealPostCompose";
+import Mealplan from "./MealPostCompose";
 
 function AppContainer() {
   return (
@@ -24,7 +24,7 @@ function AppContainer() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/newsfeed" element={<NewsFeed />}>
           <Route path="" element={<NewsFeedContent />} />
-          <Route path="mealplan" element={<Mealplan/>} />
+          <Route path="mealplan" element={<Mealplan />} />
           <Route path="following" element={<FollowingList />} />
           <Route path="follower" element={<FollowerList />} />
           <Route path="profile" element={<Profile />} />
@@ -32,7 +32,7 @@ function AppContainer() {
           <Route path="allaccounts" element={<AllAccounts />} />
         </Route>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
-        <Route path="*" element={<NotFoundPage />} />        
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>
   );
