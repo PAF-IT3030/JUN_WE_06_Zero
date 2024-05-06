@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { RiEditFill } from "react-icons/ri";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
@@ -67,6 +67,7 @@ function PostItem(props) {
       setSendButtonDisable(true);
     }
   }
+  const handleUpdateClick = () => {};
 
   function sendComment(e) {
     dispatch(
@@ -96,15 +97,26 @@ function PostItem(props) {
             <Hashicon value={props.userId} size={30} />
           </div>
           <div className="d-flex flex-column">
-          <div className="fw-bold">{props.firstName + " " + props.lastName}</div>
-          <div className="text-secondary">{timeAgo.format(new Date(props.postDate).getTime())}</div>
+            <div className="fw-bold">
+              {props.firstName + " " + props.lastName}
+            </div>
+            <div className="text-secondary">
+              {timeAgo.format(new Date(props.postDate).getTime())}
+            </div>
+          </div>
+          <div className="mx-3">
+            <span
+              className={`${styles.updateButton} mx-1 fs-4`}
+              // onClick={handleUpdateClick}
+            >
+              <RiEditFill className="text-warning" />
+            </span>
           </div>
         </div>
         <div className="mx-3">
           <div className="fw-bold fs-5 text-center">
             <p>{props.recipesName}</p>
             <p className="fw-bold fs-6">{props.dietaryType}</p>
-            
           </div>
           <div>
             <p className="fw-bold">Nutritional Content</p>
