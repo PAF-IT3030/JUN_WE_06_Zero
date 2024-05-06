@@ -6,7 +6,6 @@ import {getFollowingPosts} from "../feature/followingPost/followingPostSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function NewsFeedContent() {
-  console.log("hello");
   const dispatch = useDispatch();
   const storeFollowingPosts = useSelector((state) => state.followingPostReducer.followingPosts);
 

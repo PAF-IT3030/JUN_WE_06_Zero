@@ -99,4 +99,11 @@ public class UserController {
     public ResponseEntity<String> testAfterLogin(Principal p) {
         return ResponseEntity.ok("Welcome. You are: " + p.getName());
     }
+
+    @GetMapping("/users/getProfileData/")
+    public ResponseEntity<ResponseObjectService> getProfileData(Principal p) {
+        return new ResponseEntity<ResponseObjectService>(userService.getProfileData(p.getName()), HttpStatus.OK);
+    }
+
+
 }

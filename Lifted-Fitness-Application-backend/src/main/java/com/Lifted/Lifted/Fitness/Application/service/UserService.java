@@ -288,5 +288,23 @@ public class UserService implements UserDetailsService {
             return springUser;
         }
     }
+
+    public ResponseObjectService getProfileData(String name) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<UserEntity> optUser = userRepo.findByEmail(name);
+        if (optUser.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("user id: " + name + " not existed");
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            UserEntity user = optUser.get();
+            user.setPassword("");
+            responseObj.setPayload(user);
+            responseObj.setStatus("success");
+            responseObj.setMessage("success");
+            return responseObj;
+        }
+    }
 }
 

@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 
-import Login from "./auth/auth2";
+import GoogleLogin from "./auth/auth2";
 
 import { RiLoginBoxLine } from "react-icons/ri";
 
@@ -146,7 +146,10 @@ function SignIn() {
             <Button type="submit" variant="success">
               Sign In <RiLoginBoxLine />
             </Button>
-            <Login />
+            <div className="my-3 justify-content-center align-items-center">
+            <GoogleLogin />
+            </div>
+           
             <Row className="mt-3">
               <Col className="text-center">
                 <Link to="/signup" className="text-decoration-none">
