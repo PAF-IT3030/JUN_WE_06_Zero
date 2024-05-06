@@ -6,8 +6,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class IdObjectEntity {
     private String id;
+
+    public IdObjectEntity(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+
 }
 

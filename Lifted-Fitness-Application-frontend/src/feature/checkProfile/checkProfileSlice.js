@@ -24,6 +24,23 @@ export const getProfilePosts = createAsyncThunk(
   }
 );
 
+export const updateProfilePost= createAsyncThunk(
+  "/api/v1/updateprofilepost",
+  async (post, thunkAPI) => {
+    const response = await axios({
+      method: "put",
+      url: "/api/v1/updateprofilepost",
+      headers: {
+        Authorization: localStorage.getItem("psnToken"),
+      },
+      data: {
+        post: post,
+      },
+    });
+    return response.data.payload;
+  }
+);
+
 export const getProfileInfo = createAsyncThunk(
   "/api/v1/users/profile",
   async (userId, thunkAPI) => {

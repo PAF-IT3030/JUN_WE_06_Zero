@@ -27,6 +27,14 @@ public class MealPlanPostController {
         return new ResponseEntity<ResponseObjectService>(postService.findPostByUserId(inputUserId), HttpStatus.OK);
     }
 
+//    @GetMapping("/myposts/{id}")
+////    public ResponseEntity<ResponseObjectService> findPostByPostId(@PathVariable IdObjectEntity inputPostId) {
+////        return new ResponseEntity<ResponseObjectService>(postService.findPostByUserId(inputPostId), HttpStatus.OK);
+////    }
+
+    @GetMapping("/myposts/{userid}/{id}")
+    public ResponseEntity<ResponseObjectService> findPostByPostId(@PathVariable String userid, @PathVariable String id) {
+        return new ResponseEntity<ResponseObjectService>(postService.findPostByPostId(new IdObjectEntity(id)), HttpStatus.OK);    }
 
 
 
@@ -52,7 +60,18 @@ public class MealPlanPostController {
     }
 
     @GetMapping("/getAllMealPosts")
-public ResponseEntity<ResponseObjectService> getAllPosts() {
-        return new ResponseEntity<ResponseObjectService>(postService.getAllPosts(), HttpStatus.OK);
+        public ResponseEntity<ResponseObjectService> getAllPosts() {
+            return new ResponseEntity<ResponseObjectService>(postService.getAllPosts(), HttpStatus.OK);
     }
+
+    @GetMapping("/getMealPostById/{id}")
+    public ResponseEntity<ResponseObjectService> getPostById(@PathVariable String id) {
+        return new ResponseEntity<ResponseObjectService>(postService.getPostById(new IdObjectEntity(id)), HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteMealPost/{id}")
+    public ResponseEntity<ResponseObjectService> deletePostById(@PathVariable String id) {
+        return new ResponseEntity<ResponseObjectService>(postService.deletePostById(new IdObjectEntity(id)), HttpStatus.OK);
+    }
+
+
 }

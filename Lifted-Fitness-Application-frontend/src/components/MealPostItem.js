@@ -21,6 +21,7 @@ import {
   addComment,
   getFollowingPosts,
 } from "../feature/followingPost/followingPostSlice";
+import axios from "axios";
 
 function PostItem(props) {
   const dispatch = useDispatch();
@@ -67,7 +68,34 @@ function PostItem(props) {
       setSendButtonDisable(true);
     }
   }
-  const handleUpdateClick = () => {};
+  const handleUpdateClick = () => {
+    
+    console.log("Update Clicked");
+  };
+
+  async function DeletePost() {
+    try{
+      const response=await axios({
+        method: 'delete',
+        url: '/api/v1/deleteMealPost/'+postId,
+        headers:{
+          Authorization: localStorage.getItem("psnToken"),
+        }
+      });
+
+
+    }
+    catch(e){
+      console.log(e);
+    }
+
+  }
+
+  const handleDeleteClick = (e) => {
+    DeletePost();
+    console.log("Delete Clicked");
+    window.location.reload();
+  };
 
   function sendComment(e) {
     dispatch(
@@ -104,16 +132,24 @@ function PostItem(props) {
               {timeAgo.format(new Date(props.postDate).getTime())}
             </div>
           </div>
-          <div className="mx-3">
+          <div className="d-flex justify-content-end">
             <span
-              className={`${styles.updateButton} mx-1 fs-4`}
-              // onClick={handleUpdateClick}
+              className={`${styles.updateButton} mx-4 fs-4`}
+              onClick={handleUpdateClick}
             >
               <RiEditFill className="text-warning" />
+              
+            </span>
+            <span
+              className={`${styles.updateButton} mx-4 fs-4`}
+              onClick={handleDeleteClick}
+            >
+              <RiEditFill className="text-warning" />
+              
             </span>
           </div>
         </div>
-        <div className="mx-3">
+        <div className="mx-6">
           <div className="fw-bold fs-5 text-center">
             <p>{props.recipesName}</p>
             <p className="fw-bold fs-6">{props.dietaryType}</p>
@@ -204,7 +240,7 @@ function PostItem(props) {
               <div className="ms-auto">
                 <Button
                   variant="success"
-                  className="p-1"
+                  className="p-1"Button
                   disabled={sendButtonDisable}
                   onClick={sendComment}
                 >
