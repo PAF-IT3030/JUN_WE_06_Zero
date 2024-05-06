@@ -1,14 +1,17 @@
 package com.Lifted.Lifted.Fitness.Application.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.Lifted.Lifted.Fitness.Application.entity.WorkoutPlan;
 import com.Lifted.Lifted.Fitness.Application.repository.WorkoutplanRepo;
 
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
 public class WorkoutPlanServices {
     
-      @Autowired
-    private WorkoutplanRepo repo;
+    private final WorkoutplanRepo repo;
 
     public void saveOrUpdate(WorkoutPlan workoutPlan) {
         repo.save(workoutPlan);

@@ -1,6 +1,5 @@
 package com.Lifted.Lifted.Fitness.Application.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Lifted.Lifted.Fitness.Application.entity.WorkoutPlan;
 import com.Lifted.Lifted.Fitness.Application.service.WorkoutPlanServices;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/workoutplan")
 
 public class WorkoutPlanController {
 
-     @Autowired
-    private WorkoutPlanServices workoutPlanServices;
+    private final WorkoutPlanServices workoutPlanServices;
 
     @PostMapping(value = "/")
     private String saveWorkoutPlan(@RequestBody WorkoutPlan workoutPlan) {
