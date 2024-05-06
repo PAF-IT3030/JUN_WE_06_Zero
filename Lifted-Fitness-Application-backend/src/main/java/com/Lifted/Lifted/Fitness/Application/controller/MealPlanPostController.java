@@ -73,5 +73,9 @@ public class MealPlanPostController {
         return new ResponseEntity<ResponseObjectService>(postService.deletePostById(new IdObjectEntity(id)), HttpStatus.OK);
     }
 
-
+    @PutMapping("/updateMealPost/{id}")
+    public ResponseEntity<ResponseObjectService> updatePostById(@PathVariable String id, @RequestBody MealPlanPostEntity inputPost) {
+        inputPost.setId(id);
+        return new ResponseEntity<ResponseObjectService>(postService.updatePostById(inputPost), HttpStatus.OK);
+    }
 }

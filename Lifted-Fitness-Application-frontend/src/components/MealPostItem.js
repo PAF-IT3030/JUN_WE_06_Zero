@@ -3,6 +3,7 @@ import { RiEditFill } from "react-icons/ri";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+import MealPlanUpdateModal from "./MealPlanUpdateModal";
 
 import {
   RiHeartFill,
@@ -34,6 +35,7 @@ function PostItem(props) {
     localStorage.getItem("psnUserId")
   );
   const [postId, setPostId] = useState(props.postId);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
@@ -69,8 +71,11 @@ function PostItem(props) {
     }
   }
   const handleUpdateClick = () => {
-    
     console.log("Update Clicked");
+    setIsModalOpen(false);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   async function DeletePost() {
@@ -133,11 +138,14 @@ function PostItem(props) {
             </div>
           </div>
           <div className="d-flex justify-content-end">
+            
             <span
               className={`${styles.updateButton} mx-4 fs-4`}
               onClick={handleUpdateClick}
             >
               <RiEditFill className="text-warning" />
+              <MealPlanUpdateModal isModalOpen={isModalOpen} closeModal={closeModal} postId={postId} recipesName={props.recipesName} dietaryType={props.dietaryType} nutritionalContent={props.nutritionalContent} ingredientContent={props.ingredientContent} cookContent={props.cookContent} image={props.image}
+              />
               
             </span>
             <span

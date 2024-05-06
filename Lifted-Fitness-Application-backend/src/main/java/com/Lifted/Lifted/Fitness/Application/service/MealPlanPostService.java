@@ -44,6 +44,32 @@ public class MealPlanPostService {
         }
     }
 
+    public ResponseObjectService updatePostById(MealPlanPostEntity inputPost) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<MealPlanPostEntity> optPost = postRepo.findById(inputPost.getId());
+        if (optPost.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("Cannot find post with ID: " + inputPost.getId());
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            MealPlanPostEntity existingPost = optPost.get();
+            existingPost.setRecipesName(inputPost.getRecipesName());
+            existingPost.setDietaryType(inputPost.getDietaryType());
+            existingPost.setNutritionalContent(inputPost.getNutritionalContent());
+            existingPost.setIngredientContent(inputPost.getIngredientContent());
+            existingPost.setCookContent(inputPost.getCookContent());
+
+            MealPlanPostEntity savedPost = postRepo.save(existingPost);
+
+            responseObj.setStatus("success");
+            responseObj.setMessage("Post with ID " + savedPost.getId() + " has been updated successfully");
+            responseObj.setPayload(savedPost);
+            return responseObj;
+        }
+    }
+
+
     public ResponseObjectService deletePostById(IdObjectEntity inputPostId) {
         ResponseObjectService responseObj = new ResponseObjectService();
         Optional<MealPlanPostEntity> optPost = postRepo.findById(inputPostId.getId());

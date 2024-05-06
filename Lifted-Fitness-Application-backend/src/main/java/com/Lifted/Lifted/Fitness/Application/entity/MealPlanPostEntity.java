@@ -50,4 +50,8 @@ public class MealPlanPostEntity {
 
     public void setComment(ArrayList<Object> objects) {
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
