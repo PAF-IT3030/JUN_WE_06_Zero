@@ -105,5 +105,10 @@ public class UserController {
         return new ResponseEntity<ResponseObjectService>(userService.getProfileData(p.getName()), HttpStatus.OK);
     }
 
+    @PostMapping("/users/resetPassword")
+    public ResponseEntity<ResponseObjectService> resetPassword(@RequestBody UserSignInEntity inputUser) {
+        return new ResponseEntity<ResponseObjectService>(userService.resetPassword(inputUser), HttpStatus.OK);
+    }
+
 
 }

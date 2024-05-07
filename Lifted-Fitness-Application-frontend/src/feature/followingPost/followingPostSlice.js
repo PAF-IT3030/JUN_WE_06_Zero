@@ -6,11 +6,11 @@ const initialState = {
 };
 
 export const getFollowingPosts = createAsyncThunk(
-  "/api/v1/followingposts",
+  "/api/v1/followingPosts",
   async (thunkAPI) => {
     const response = await axios({
       method: "post",
-      url: "/api/v1/followingposts",
+      url: "/api/v1/followingPosts",
       headers: {
         Authorization: localStorage.getItem("psnToken"),
       },

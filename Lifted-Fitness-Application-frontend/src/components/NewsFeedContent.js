@@ -14,7 +14,7 @@ function NewsFeedContent() {
   // async function getFollowingPosts() {
   //   const response = await axios({
   //     method: "post",
-  //     url: "/api/v1/followingposts",
+  //     url: "/api/v1/followingPosts",
   //     headers: {
   //       Authorization: localStorage.getItem("psnToken"),
   //     },

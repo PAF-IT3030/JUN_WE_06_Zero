@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.Lifted.Lifted.Fitness.Application.entity.UserSignInEntity;
 import com.Lifted.Lifted.Fitness.Application.repository.UserRepository;
 import com.Lifted.Lifted.Fitness.Application.entity.DoubleIdObjectEntity;
 import com.Lifted.Lifted.Fitness.Application.entity.IdObjectEntity;
