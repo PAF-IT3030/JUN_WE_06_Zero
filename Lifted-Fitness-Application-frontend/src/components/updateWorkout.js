@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom"; 
-import AddPost from "./add";
+
 
 const API_URL =
   process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
@@ -48,7 +48,7 @@ function UpdatePost() {
 
       });
       alert("Successfully Updated!");
-      navigate("/"); 
+      navigate(""); 
     } catch (error) {
       setError("Error updating details");
     }

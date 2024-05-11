@@ -90,7 +90,7 @@ function AddPost() {
             <div className="form-group">
               <label for="description">Description</label>
               <input
-                type="text"
+                type="textarea"
                 className="form-control"
                 id="description"
                 value={description}
