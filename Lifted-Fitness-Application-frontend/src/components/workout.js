@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
 
@@ -20,10 +20,6 @@ function Workout() {
     } catch (error) {
       setError("Error fetching details");
     }
-  };
-
-  const handleNavigateToAddWorkout = () => {
-    navigate("/post");
   };
 
   const handleEditWorkout = (workoutId) => {
@@ -46,12 +42,9 @@ function Workout() {
         <br />
         <h1>Workout Plan</h1>
         <br />
-        <button
-          className="btn btn-dark mt-4"
-          onClick={handleNavigateToAddWorkout}
-        >
-          Create Workout Plan
-        </button>
+        <Link to="addworkoutplan" className="text-decoration-none">
+        <span><button type="button" class="btn btn-success">Add Workout Plan</button></span>
+        </Link>
         <div>
           <table className="table table-striped mt-4">
             <thead>

@@ -33,7 +33,7 @@ function AppContainer() {
           <Route path="profile" element={<Profile />} />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="allaccounts" element={<AllAccounts />} />
-          <Route path="addworkoutplan" element={<AddPost />} />
+          <Route path="workoutplan/addworkoutplan" element={<AddPost />} />
           <Route path="workoutplan" element={<Workout />} />
           <Route path="updateWorkout" element={<UpdatePost />} />
         </Route>
