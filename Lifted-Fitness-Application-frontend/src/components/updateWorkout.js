@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Import useNavigate and useParams
+import { useNavigate, useParams } from "react-router-dom"; 
 import AddPost from "./add";
 
 const API_URL =
@@ -15,8 +15,8 @@ function UpdatePost() {
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate(); // Create a useNavigate instance
-  const { workoutId } = useParams(); // Get student ID from URL parameter
+  const navigate = useNavigate(); 
+  const { workoutId } = useParams();
 
   useEffect(() => {
     const fetchworkout = async () => {
@@ -33,7 +33,7 @@ function UpdatePost() {
     };
 
     fetchworkout();
-  }, [workoutId]); // Run effect only when workout changes
+  }, [workoutId]); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,7 +48,7 @@ function UpdatePost() {
 
       });
       alert("Successfully Updated!");
-      navigate("/"); // Redirect to the workout list page after successful update
+      navigate("/"); 
     } catch (error) {
       setError("Error updating details");
     }
