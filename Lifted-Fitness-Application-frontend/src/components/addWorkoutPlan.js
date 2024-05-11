@@ -56,7 +56,7 @@ function AddPost() {
               />
             </div>
             <div className="form-group">
-              <label for="planName">planName</label>
+              <label for="planName">Plan Name</label>
               <input
                 type="text"
                 className="form-control"
