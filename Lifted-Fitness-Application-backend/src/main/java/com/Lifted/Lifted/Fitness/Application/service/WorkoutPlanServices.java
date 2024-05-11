@@ -1,10 +1,12 @@
 package com.Lifted.Lifted.Fitness.Application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.Lifted.Lifted.Fitness.Application.entity.workoutPlan;
 import com.Lifted.Lifted.Fitness.Application.repository.WorkoutplanRepo;
 
+@Service
 public class WorkoutPlanServices {
 
      @Autowired

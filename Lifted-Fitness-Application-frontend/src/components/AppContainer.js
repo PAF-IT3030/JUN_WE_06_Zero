@@ -35,7 +35,7 @@ function AppContainer() {
           <Route path="allaccounts" element={<AllAccounts />} />
           <Route path="workoutplan/addworkoutplan" element={<AddPost />} />
           <Route path="workoutplan" element={<Workout />} />
-          <Route path="updateWorkout" element={<UpdatePost />} />
+          {/* <Route path="updateWorkout" element={<UpdatePost />} /> */}
         </Route>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />        

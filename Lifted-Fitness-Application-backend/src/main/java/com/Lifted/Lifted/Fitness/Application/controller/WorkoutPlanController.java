@@ -8,17 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.Lifted.Lifted.Fitness.Application.entity.workoutPlan;
 import com.Lifted.Lifted.Fitness.Application.service.WorkoutPlanServices;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping("/api/v1/workoutPlan")
 public class WorkoutPlanController {
 
-    
-    @Autowired
-    private WorkoutPlanServices workoutPlanServices;
+    private final WorkoutPlanServices workoutPlanServices;
 
-    @PostMapping(value = "/")
+    @PostMapping("/insert")
     private String saveWorkoutPlan(@RequestBody workoutPlan workoutPlan) {
         workoutPlanServices.saveOrUpdate(workoutPlan);
         return workoutPlan.getId();

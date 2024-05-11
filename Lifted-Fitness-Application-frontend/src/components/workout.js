@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 function Workout() {
   const [workouts, setWorkouts] = useState([]);
@@ -10,30 +9,28 @@ function Workout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchWorkouts();
+    fetchCommunities();
   }, []);
 
-  const fetchWorkouts = async () => {
+  const fetchCommunities = async () => {
     try {
-      const response = await axios.get(`${API_URL}/getall`);
-      setWorkouts(response.data);
+        const response = await axios.get("http://localhost:3000/api/v1/workoutPlan/getall", {
+            headers: {
+                Authorization: localStorage.getItem("psnToken"),
+            },
+        });
+        if (response.status !== 200) {
+            throw new Error("Failed to fetch communities");
+        }
+        setWorkouts(response.data);
     } catch (error) {
-      setError("Error fetching details");
+        console.error("Error fetching communities:", error);
+        throw error;
     }
-  };
+};
 
   const handleEditWorkout = (workoutId) => {
     navigate(`/editpost/${workoutId}`);
-  };
-
-  const handleDeleteWorkout = async (workoutId) => {
-    try {
-      await axios.delete(`${API_URL}/delete/${workoutId}`);
-      alert("Successfully Deleted");
-      fetchWorkouts();
-    } catch (error) {
-      setError("Error deleting workout details");
-    }
   };
 
   return (
@@ -43,7 +40,9 @@ function Workout() {
         <h1>Workout Plan</h1>
         <br />
         <Link to="addworkoutplan" className="text-decoration-none">
-        <span><button type="button" class="btn btn-success">Add Workout Plan</button></span>
+          <button type="button" className="btn btn-success">
+            Add Workout Plan
+          </button>
         </Link>
         <div>
           <table className="table table-striped mt-4">
@@ -57,7 +56,7 @@ function Workout() {
               </tr>
             </thead>
             <tbody>
-              {workouts.map((workout) => (
+            {workouts.map((workout) => (
                 <tr key={workout._id}>
                   <td>{workout.id}</td>
                   <td>{workout.planName}</td>
@@ -75,7 +74,7 @@ function Workout() {
                     <button
                       type="button"
                       className="btn btn-danger"
-                      onClick={() => handleDeleteWorkout(workout._id)}
+                      // onClick={() => handleDeleteWorkout(workout._id)}
                     >
                       Delete Plan
                     </button>

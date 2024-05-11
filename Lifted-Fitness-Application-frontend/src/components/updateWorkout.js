@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom";
+import { getWorkoutPlanById } from "../feature/workout/workoutSlice";
 
 
-const API_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
+//const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
 
 function UpdatePost() {
   const [id, setId] = useState("");
@@ -19,9 +19,9 @@ function UpdatePost() {
   const { workoutId } = useParams();
 
   useEffect(() => {
-    const fetchworkout = async () => {
+    const fetchworkout = async (id) => {
       try {
-        const response = await axios.get(`${API_URL}/search/${workoutId}`);
+        const response = getWorkoutPlanById(id);
         setId(response.data.id);
         setPlanName(response.data.planName);
         setDuration(response.data.duration);
