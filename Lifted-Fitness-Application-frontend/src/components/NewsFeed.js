@@ -45,7 +45,7 @@ function NewsFeed() {
               <img src={liftedLogo} width="125" alt="logo" />
             </Col>
             <Col className="text-sm-start text-center text-dark mb-sm-0 mb-3">
-              <h1>Lifted Fitness Social Network</h1>
+              <h1 className="fw-bold text-left font-italic">Lifted Fitness Social Network</h1>
             </Col>
           </Row>
         </Col>
@@ -76,10 +76,10 @@ function NewsFeed() {
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
-                      <Link to="" className="text-decoration-none">
+                      <Link to="mealplan" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-success shadow">
                           <span>
-                            {" "}
+                            
                             <RiPassportLine /> Meal Plan
                           </span>
                         </li>
@@ -98,7 +98,7 @@ function NewsFeed() {
                       <Link to="follower" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-success shadow">
                           <span>
-                            <RiBaseStationLine /> Followers
+                            <RiBaseStationLine />Followers
                           </span>
                         </li>
                       </Link>
@@ -122,6 +122,16 @@ function NewsFeed() {
                         </span>
                       </li>
                     </Nav.Link>
+                    {/* <Nav.Link>
+                      <li
+                        className={`list-group-item fs-5 py-3 text-success shadow ${styles.signOutButton}`}
+                        onClick={handleSignOut}
+                      >
+                        <span>
+                          <RiLogoutBoxLine /> Sign Out
+                        </span>
+                      </li>
+                    </Nav.Link> */}
                   </ul>
                 </Nav>
               </Navbar.Collapse>

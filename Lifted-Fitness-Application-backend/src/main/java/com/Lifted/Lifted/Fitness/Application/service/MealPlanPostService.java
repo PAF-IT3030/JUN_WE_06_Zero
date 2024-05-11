@@ -28,6 +28,55 @@ public class MealPlanPostService {
         return responseObj;
     }
 
+    public ResponseObjectService getPostById(IdObjectEntity inputPostId) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<MealPlanPostEntity> optPost = postRepo.findById(inputPostId.getId());
+        if (optPost.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("cannot find post id: " + inputPostId.getId());
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            responseObj.setStatus("success");
+            responseObj.setMessage("success");
+            responseObj.setPayload(optPost.get());
+            return responseObj;
+        }
+    }
+
+    public ResponseObjectService deletePostById(IdObjectEntity inputPostId) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<MealPlanPostEntity> optPost = postRepo.findById(inputPostId.getId());
+        if (optPost.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("cannot find post id: " + inputPostId.getId());
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            postRepo.deleteById(inputPostId.getId());
+            responseObj.setStatus("success");
+            responseObj.setMessage("post is deleted successfully");
+            responseObj.setPayload(null);
+            return responseObj;
+        }
+    }
+
+    public ResponseObjectService findPostByPostId(IdObjectEntity inputPostId) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<MealPlanPostEntity> optPost = postRepo.findById(inputPostId.getId());
+        if (optPost.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("cannot find post id: " + inputPostId.getId());
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            responseObj.setStatus("success");
+            responseObj.setMessage("success");
+            responseObj.setPayload(optPost.get());
+            return responseObj;
+        }
+    }
+
     public ResponseObjectService findPostByUserId(IdObjectEntity inputUserId) {
         ResponseObjectService responseObj = new ResponseObjectService();
         Optional<List<MealPlanPostEntity>> userPostsOpt = postRepo.findByUserIdOrderByCreatedAtDesc(inputUserId.getId());
@@ -169,7 +218,11 @@ public class MealPlanPostService {
             // update post list of user who shared the post
             targetPost.setUserId(doubleId.getId2());
             targetPost.setId(null);
-            targetPost.setContent("Shared a post: " + targetPost.getContent());
+            targetPost.setDietaryType(targetPost.getDietaryType());
+            targetPost.setRecipesName(targetPost.getRecipesName());
+            targetPost.setNutritionalContent(targetPost.getNutritionalContent());
+            targetPost.setIngredientContent(targetPost.getIngredientContent());
+            targetPost.setCookContent(targetPost.getCookContent());
             targetPost.setLove(new ArrayList<>());
             targetPost.setShare(new ArrayList<>());
             targetPost.setComment(new ArrayList<>());
@@ -180,6 +233,15 @@ public class MealPlanPostService {
             responseObj.setPayload(targetPost);
             return responseObj;
         }
+    }
+
+    public ResponseObjectService getAllPosts() {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        List<MealPlanPostEntity> allPosts = postRepo.findAll();
+        responseObj.setStatus("success");
+        responseObj.setMessage("success");
+        responseObj.setPayload(allPosts);
+        return responseObj;
     }
 }
 
