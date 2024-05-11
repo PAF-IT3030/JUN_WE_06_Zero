@@ -24,20 +24,10 @@ function WorkoutStatusUpdateForm({ addUpdate }) {
       weight: '',
       date: '', // Resetting date field after submission
     });
-    // Call postDataToBackend when the form is submitted
-    await postDataToBackend();
+    // No need to call postDataToBackend here, it's called from the App component after updating
   };
 
   const [responseData, setResponseData] = useState(null);
-
-  const postDataToBackend = async () => {
-    try {
-      const response = await axios.post('http://localhost:8090/updates', formData);
-      setResponseData(response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
 
   return (
     <div style={{ maxWidth: '500px', margin: '0 auto', padding: '20px', backgroundColor: '#ffffff', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
