@@ -1,6 +1,5 @@
 package com.Lifted.Lifted.Fitness.Application.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,20 +32,20 @@ public class WorkoutPlanController {
         return workoutPlanServices.listAll();
     }
 
-    @PutMapping(value = "{id}")
+    @PutMapping("/{id}")
     private workoutPlan update(@RequestBody workoutPlan workoutPlan, @PathVariable(name = "id") String id) {
         workoutPlan.setId(id);
         workoutPlanServices.saveOrUpdate(workoutPlan);
         return workoutPlan;
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     private void deleteWorkoutPlan(@PathVariable("id") String id) {
         workoutPlanServices.deleteWorkoutPlan(id);
     }
 
-    @RequestMapping("{id}")
-    private workoutPlan getWorkoutPlan(@PathVariable(name = "id") String id) {
+    @GetMapping("/{id}")
+    private workoutPlan getWorkoutPlan(@PathVariable("id") String id) {
         return workoutPlanServices.getWorkoutPlanById(id);
     }
 

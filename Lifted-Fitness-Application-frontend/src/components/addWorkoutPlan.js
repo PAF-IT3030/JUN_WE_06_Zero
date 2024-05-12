@@ -3,9 +3,6 @@ import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
-
 function AddPost() {
   const [id, setId] = useState("");
   const [planName, setPlanName] = useState("");
@@ -18,21 +15,30 @@ function AddPost() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const updatedWorkOut = {
+      id,
+      planName,
+      duration,
+      intensity,
+      description,
+    };
+
     try {
-      await axios.post(`${API_URL}/save`, {
-        id,
-        planName,
-        duration,
-        intensity,
-        description,
-      });
+     const response = await axios.post(
+        `http://localhost:3000/api/v1/workoutPlan/insert`,
+        updatedWorkOut, // Moved data here
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
+        }
+      );
       alert("Workout Plan Added Successfully!");
       setId("");
       setPlanName("");
       setDuration("");
       setIntensity("");
       setDescription("");
-      navigate("/");
     } catch (error) {
       setError("Error saving details");
     }

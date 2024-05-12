@@ -2,71 +2,94 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getWorkoutPlanById } from "../feature/workout/workoutSlice";
-
-
-//const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/workoutplan";
 
 function UpdatePost() {
-  const [id, setId] = useState("");
+  const [ids, setId] = useState("");
   const [planName, setPlanName] = useState("");
   const [duration, setDuration] = useState("");
   const [intensity, setIntensity] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
-
-  const navigate = useNavigate(); 
-  const { workoutId } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    const fetchworkout = async (id) => {
-      try {
-        const response = getWorkoutPlanById(id);
-        setId(response.data.id);
-        setPlanName(response.data.planName);
-        setDuration(response.data.duration);
-        setIntensity(response.data.intensity);
-        setDescription(response.data.description);
-      } catch (error) {
-        setError("Error fetching details");
-      }
+    getWorkoutById();
+  }, []);
+
+  const handleSubmit = async () => {
+    const updatedWorkOut = {
+      ids,
+      planName,
+      duration,
+      intensity,
+      description,
     };
-
-    fetchworkout();
-  }, [workoutId]); 
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+   
     try {
-      await axios.put(`${API_URL}/edit/${workoutId}`, {
-        id,
-        planName,
-        duration,
-        intensity,
-        description,
-
-      });
-      alert("Successfully Updated!");
-      navigate(""); 
+      const response = await axios.put(
+        `http://localhost:3000/api/v1/workoutPlan/${id}`, // Corrected URL
+        updatedWorkOut, // Moved data here
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
+        }
+      );
+      
+      if (!response.ok) {
+        throw new Error("Failed to update workoutPlan");
+      }
+      
+      const data = await response.json();
+      return data;
     } catch (error) {
-      setError("Error updating details");
+      console.error("Error updating workoutPlan:", error);
+      throw error;
     }
   };
+  
 
+  const getWorkoutById = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/v1/workoutPlan/getall",
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
+        }
+      );
+      if (response.status !== 200) {
+        throw new Error("Failed to fetch workout plan");
+      }
+      const data = response.data;
+      const matchingWorkout = data.find((workout) => workout.id === id);
+      if (matchingWorkout) {
+        setId(matchingWorkout.id);
+        setPlanName(matchingWorkout.planName);
+        setDuration(matchingWorkout.duration);
+        setIntensity(matchingWorkout.intensity);
+        setDescription(matchingWorkout.description);
+      }
+    } catch (error) {
+      console.error("Error fetching workout plan by ID:", error);
+      setError(error.message);
+    }
+  };
   return (
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h1>Update Workout Details</h1> 
+          <h1>Update Workout Details</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label for="id">ID</label>
               <input
+                disabled
                 type="number"
                 className="form-control"
                 id="id"
-                value={id}
+                value={ids}
                 onChange={(event) => setId(event.target.value)}
               />
             </div>

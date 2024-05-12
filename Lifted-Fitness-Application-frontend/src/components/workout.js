@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 
 function Workout() {
   const [workouts, setWorkouts] = useState([]);
@@ -14,23 +13,42 @@ function Workout() {
 
   const fetchCommunities = async () => {
     try {
-        const response = await axios.get("http://localhost:3000/api/v1/workoutPlan/getall", {
-            headers: {
-                Authorization: localStorage.getItem("psnToken"),
-            },
-        });
-        if (response.status !== 200) {
-            throw new Error("Failed to fetch communities");
+      const response = await axios.get(
+        "http://localhost:3000/api/v1/workoutPlan/getall",
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
         }
-        setWorkouts(response.data);
+      );
+      if (response.status !== 200) {
+        throw new Error("Failed to fetch communities");
+      }
+      setWorkouts(response.data);
     } catch (error) {
-        console.error("Error fetching communities:", error);
-        throw error;
+      console.error("Error fetching communities:", error);
+      throw error;
     }
-};
+  };
 
-  const handleEditWorkout = (workoutId) => {
-    navigate(`/editpost/${workoutId}`);
+  const deleteCommunities = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/v1/workoutPlan/${id}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
+        }
+      );
+      if (response.status !== 200) {
+        throw new Error("Failed to fetch communities");
+      }
+      fetchCommunities();
+    } catch (error) {
+      console.error("Error fetching communities:", error);
+      throw error;
+    }
   };
 
   return (
@@ -56,7 +74,7 @@ function Workout() {
               </tr>
             </thead>
             <tbody>
-            {workouts.map((workout) => (
+              {workouts.map((workout) => (
                 <tr key={workout._id}>
                   <td>{workout.id}</td>
                   <td>{workout.planName}</td>
@@ -64,17 +82,18 @@ function Workout() {
                   <td>{workout.intensity}</td>
                   <td>{workout.description}</td>
                   <td>
-                    <button
-                      type="button"
-                      className="btn btn-primary mr-2"
-                      onClick={() => handleEditWorkout(workout._id)}
+                    <Link
+                      to={`updateWorkout/${workout.id}`}
+                      className="text-decoration-none"
                     >
-                      Edit Plan
-                    </button>
+                      <button type="button" className="btn btn-success">
+                        Update
+                      </button>
+                    </Link>
                     <button
                       type="button"
                       className="btn btn-danger"
-                      // onClick={() => handleDeleteWorkout(workout._id)}
+                      onClick={() => deleteCommunities(workout.id)}
                     >
                       Delete Plan
                     </button>
