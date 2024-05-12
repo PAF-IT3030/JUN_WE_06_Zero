@@ -14,6 +14,9 @@ import MyProfile from "./MyProfile";
 import AllAccounts from "./AllAccounts";
 import UnauthorizedPage from "./UnauthorizedPage";
 import  Mealplan from "./MealPostCompose";
+import AddPost from "./addWorkoutPlan";
+import Workout from "./workout";
+import UpdatePost from "./updateWorkout";
 
 function AppContainer() {
   return (
@@ -30,6 +33,9 @@ function AppContainer() {
           <Route path="profile" element={<Profile />} />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="allaccounts" element={<AllAccounts />} />
+          <Route path="workoutplan/addworkoutplan" element={<AddPost />} />
+          <Route path="workoutplan" element={<Workout />} />
+          <Route path="workoutplan/updateWorkout/:id" element={<UpdatePost />} />
         </Route>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
         <Route path="*" element={<NotFoundPage />} />        

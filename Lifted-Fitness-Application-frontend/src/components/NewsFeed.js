@@ -86,6 +86,16 @@ function NewsFeed() {
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
+                      <Link to="workoutplan" className="text-decoration-none">
+                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                          <span>
+                            
+                            <RiPassportLine /> Workout Plan
+                          </span>
+                        </li>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link>
                       <Link to="following" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-success shadow">
                           <span>
